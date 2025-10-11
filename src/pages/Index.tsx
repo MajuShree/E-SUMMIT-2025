@@ -6,7 +6,46 @@ import RegisterSection from "@/components/RegisterSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollProgress from "@/components/ScrollProgress";
 
+import { useEffect, useRef, useState } from "react";
+
 const Index = () => {
+  const audioRef = useRef(null);
+  const [hasPlayed, setHasPlayed] = useState(false);
+
+  useEffect(() => {
+    function playAudio() {
+      if (!hasPlayed && audioRef.current) {
+        audioRef.current.play().then(() => {
+          setHasPlayed(true);
+          removeListeners();
+        }).catch((e) => {
+          console.warn("Audio play prevented:", e);
+        });
+      }
+    }
+
+    function onScroll() {
+      playAudio();
+    }
+    function onUserInteract() {
+      playAudio();
+    }
+
+    function removeListeners() {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("click", onUserInteract);
+      window.removeEventListener("touchstart", onUserInteract);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("click", onUserInteract, { passive: true });
+    window.addEventListener("touchstart", onUserInteract, { passive: true });
+
+    return () => {
+      removeListeners();
+    };
+  }, [hasPlayed]);
+
   return (
     <>
       <ScrollProgress />
@@ -17,14 +56,13 @@ const Index = () => {
         <EventsSection />
         <RegisterSection />
         <ContactSection />
-        <audio autoPlay loop style={{ display: 'none' }}>
-  <source src="/music/background.mp3" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
 
+        <audio ref={audioRef} loop style={{ display: "none" }}>
+          <source src="/music/background.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </main>
     </>
-  
   );
 };
 
