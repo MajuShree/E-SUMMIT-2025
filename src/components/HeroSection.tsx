@@ -4,7 +4,7 @@ const heroParts: string[] = [
   "Canara Bank Present's",
   "BIT's E Summit 2025",
   "powered by Unstop ",
-  "presented by IEDC",
+  "presented by idec",
 ];
 
 export default function HeroSection() {
@@ -45,17 +45,13 @@ export default function HeroSection() {
   }, [done]);
 
   function highlightUnstop(line: string) {
-    // 'Unstop' is always blue, even while typing!
     const idx = line.indexOf("Unstop");
     if (idx === -1) return line;
-    const before = line.slice(0, idx);
-    const highlight = line.slice(idx, idx + "Unstop".length);
-    const after = line.slice(idx + "Unstop".length);
     return (
       <>
-        {before}
-        <span className="text-cyan-400">{highlight}</span>
-        {after}
+        {line.slice(0, idx)}
+        <span className="text-cyan-400">{line.slice(idx, idx + 6)}</span>
+        {line.slice(idx + 6)}
       </>
     );
   }
@@ -65,26 +61,39 @@ export default function HeroSection() {
       <h1 className="text-center leading-tight">
         <span className="block font-bold mb-2 text-white text-4xl md:text-6xl">
           {displayed[0]}
-          {currentLine === 0 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+          {currentLine === 0 && <span>{showCursor ? "|" : ""}</span>}
         </span>
         <span className="block font-bold text-white text-3xl md:text-5xl">
           {displayed[1]}
-          {currentLine === 1 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+          {currentLine === 1 && <span>{showCursor ? "|" : ""}</span>}
         </span>
       </h1>
-      {/* powered by Unstop is below T of BIT - use ml reference */}
       <div className="w-full flex justify-center">
-        <div className="mt-6 text-xl font-semibold text-white/80" style={{ marginLeft: '3.8rem', textAlign: 'left', minWidth: '20ch' }}>
-          {currentLine === 2 ? highlightUnstop(displayed[2]) : highlightUnstop(heroParts[2])}
-          {(currentLine === 2 || (currentLine === 3 && displayed[3] === "")) && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+        <div
+          className="mt-6 text-xl font-semibold text-white/80"
+          style={{ marginLeft: "4em", minWidth: "18ch", textAlign: "left" }}>
+          {/* Only show when animating or finished */}
+          {(currentLine > 1 || currentLine === 2) && (
+            <>
+              {currentLine === 2 ? highlightUnstop(displayed[2]) : highlightUnstop(heroParts[2])}
+              {(currentLine === 2 || (currentLine === 3 && displayed[3] === "")) &&
+                <span>{showCursor ? "|" : ""}</span>}
+            </>
+          )}
         </div>
       </div>
-      {/* presented by idec is below of 'by' in Unstop - use ml reference */}
       <div className="w-full flex justify-center">
-        <div className="mt-2 text-xl font-semibold text-white/80" style={{ marginLeft: '11.8rem', textAlign: 'left', minWidth: '16ch' }}>
-          {displayed[3]}
-          {currentLine === 3 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
-          {done && ".."}
+        <div
+          className="mt-2 text-xl font-semibold text-white/80"
+          style={{ marginLeft: "13em", minWidth: "13ch", textAlign: "left" }}>
+          {(currentLine > 2 || currentLine === 3) && (
+            <>
+              {displayed[3]}
+              {currentLine === 3 && <span>{showCursor ? "|" : ""}</span>}
+              {done && ".."}
+            </>
+          )}
+          
         </div>
       </div>
     </div>

@@ -225,7 +225,33 @@ const ContactSection = () => {
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            Social media links coming soon ✨
+            <motion.div className="flex justify-center space-x-8 mb-8">
+  <motion.a
+    href="https://www.instagram.com/iedcbit?igsh=NjBiMnpqcDljczRq"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-cosmic-cyan hover:text-cosmic-pink transition"
+  >
+    Instagram
+  </motion.a>
+  <motion.a
+    href="https://www.linkedin.com/company/iedcbitblr/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-cosmic-cyan hover:text-cosmic-white transition"
+  >
+    LinkedIn
+  </motion.a>
+  <motion.a
+    href="https://www.facebook.com/iedcbitblr/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-cosmic-cyan hover:text-cosmic-blue transition"
+  >
+    Facebook
+  </motion.a>
+</motion.div>
+
           </motion.p>
           <div className="mt-12 pt-12 border-t-2 border-gradient-to-r from-transparent via-border to-transparent">
             <motion.p 
