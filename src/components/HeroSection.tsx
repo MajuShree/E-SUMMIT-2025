@@ -30,7 +30,7 @@ export default function HeroSection() {
         setTimeout(() => {
           setCurrentLine((l) => l + 1);
           setCharIdx(0);
-        }, 120);
+        }, 100);
       }
     } else {
       setDone(true);
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (done) {
-      const interval = setInterval(() => setShowCursor((c) => !c), 500);
+      const interval = setInterval(() => setShowCursor((c) => !c), 100);
       return () => clearInterval(interval);
     }
   }, [done]);
