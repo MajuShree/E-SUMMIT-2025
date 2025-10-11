@@ -7,6 +7,14 @@ All colors MUST be HSL.
 */
 
 @layer base {
+   hero-gradient {
+    background: linear-gradient(90deg, #a373ef, #cc66a1, #5199f4 60%, #b85ee7 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  
   :root {
     /* Cosmic theme colors - VIBRANT */
     --background: 240 30% 4%;

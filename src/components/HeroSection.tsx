@@ -1,137 +1,92 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import nebulaBackground from "@/assets/nebula-bg.jpg";
-import AnimatedText from "./AnimatedText";
+import { useState, useEffect } from "react";
 
-const HeroSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+const heroParts: string[] = [
+  "Canara Bank Present's",
+  "BIT's E Summit 2025",
+  "powered by Unstop ",
+  "presented by IEDC",
+];
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+export default function HeroSection() {
+  const [displayed, setDisplayed] = useState<string[]>(["", "", "", ""]);
+  const [currentLine, setCurrentLine] = useState<number>(0);
+  const [charIdx, setCharIdx] = useState<number>(0);
+  const [showCursor, setShowCursor] = useState<boolean>(true);
+  const [done, setDone] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (currentLine < heroParts.length) {
+      if (charIdx <= heroParts[currentLine].length) {
+        const timeout = setTimeout(() => {
+          setDisplayed((old) =>
+            old.map((val, idx) =>
+              idx === currentLine ? heroParts[currentLine].slice(0, charIdx) : val
+            )
+          );
+          setCharIdx((idx) => idx + 1);
+        }, 1);
+        return () => clearTimeout(timeout);
+      } else {
+        setTimeout(() => {
+          setCurrentLine((l) => l + 1);
+          setCharIdx(0);
+        }, 120);
+      }
+    } else {
+      setDone(true);
+    }
+  }, [currentLine, charIdx]);
+
+  useEffect(() => {
+    if (done) {
+      const interval = setInterval(() => setShowCursor((c) => !c), 500);
+      return () => clearInterval(interval);
+    }
+  }, [done]);
+
+  function highlightUnstop(line: string) {
+    // 'Unstop' is always blue, even while typing!
+    const idx = line.indexOf("Unstop");
+    if (idx === -1) return line;
+    const before = line.slice(0, idx);
+    const highlight = line.slice(idx, idx + "Unstop".length);
+    const after = line.slice(idx + "Unstop".length);
+    return (
+      <>
+        {before}
+        <span className="text-cyan-400">{highlight}</span>
+        {after}
+      </>
+    );
+  }
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Nebula Background with parallax */}
-      <motion.div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${nebulaBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          y,
-          scale,
-        }}
-      />
-      
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/10 via-background/30 to-background" />
-      
-      {/* Enhanced animated stars with colors */}
-      <div className="absolute inset-0 z-[2]">
-        {[...Array(100)].map((_, i) => {
-          const colors = ['bg-cosmic-purple', 'bg-cosmic-cyan', 'bg-cosmic-pink', 'bg-foreground'];
-          const randomColor = colors[Math.floor(Math.random() * colors.length)];
-          
-          return (
-            <motion.div
-              key={i}
-              className={`absolute rounded-full ${randomColor}`}
-              style={{
-                width: Math.random() * 3 + 1,
-                height: Math.random() * 3 + 1,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                filter: 'blur(0.5px)',
-              }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [0.5, 1.5, 0.5],
-              }}
-              transition={{
-                duration: 2 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut",
-              }}
-            />
-          );
-        })}
+    <div className="flex flex-col items-center justify-center h-screen bg-black">
+      <h1 className="text-center leading-tight">
+        <span className="block font-bold mb-2 text-white text-4xl md:text-6xl">
+          {displayed[0]}
+          {currentLine === 0 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+        </span>
+        <span className="block font-bold text-white text-3xl md:text-5xl">
+          {displayed[1]}
+          {currentLine === 1 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+        </span>
+      </h1>
+      {/* powered by Unstop is below T of BIT - use ml reference */}
+      <div className="w-full flex justify-center">
+        <div className="mt-6 text-xl font-semibold text-white/80" style={{ marginLeft: '3.8rem', textAlign: 'left', minWidth: '20ch' }}>
+          {currentLine === 2 ? highlightUnstop(displayed[2]) : highlightUnstop(heroParts[2])}
+          {(currentLine === 2 || (currentLine === 3 && displayed[3] === "")) && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+        </div>
       </div>
-
-      {/* Content */}
-      <motion.div 
-        className="relative z-10 text-center px-4 max-w-6xl mx-auto perspective-1000"
-        style={{ opacity }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotateX: 20 }}
-          animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-          transition={{ 
-            duration: 1.2, 
-            delay: 0.3,
-            ease: [0.22, 1, 0.36, 1]
-          }}
-          className="preserve-3d"
-        >
-          <h1 className="text-7xl md:text-9xl font-orbitron font-black mb-8 leading-tight">
-            <span className="block text-gradient-cosmic glow-cosmic">
-              <AnimatedText text="Canara BIT's" delay={0.5} />
-            </span>
-            <span className="block text-gradient-cosmic glow-cosmic mt-2">
-              <AnimatedText text="E Summit 2025" delay={0.8} />
-            </span>
-          </h1>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.3 }}
-          className="mb-12"
-        >
-          <p className="text-2xl md:text-4xl font-grotesk font-light">
-            powered by{" "}
-            <motion.span 
-              className="font-bold text-secondary glow-cyan inline-block"
-              whileHover={{ scale: 1.1, rotate: -2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Unstop
-            </motion.span>
-          </p>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.6 }}
-          className="flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <svg
-              className="w-10 h-10 text-cosmic-cyan"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </section>
+      {/* presented by idec is below of 'by' in Unstop - use ml reference */}
+      <div className="w-full flex justify-center">
+        <div className="mt-2 text-xl font-semibold text-white/80" style={{ marginLeft: '11.8rem', textAlign: 'left', minWidth: '16ch' }}>
+          {displayed[3]}
+          {currentLine === 3 && <span className="inline-block">{showCursor ? "|" : ""}</span>}
+          {done && ".."}
+        </div>
+      </div>
+    </div>
   );
-};
-
-export default HeroSection;
+}
