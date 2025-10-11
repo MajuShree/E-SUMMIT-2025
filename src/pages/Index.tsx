@@ -4,17 +4,21 @@ import SponsorsSection from "@/components/SponsorsSection";
 import EventsSection from "@/components/EventsSection";
 import RegisterSection from "@/components/RegisterSection";
 import ContactSection from "@/components/ContactSection";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const Index = () => {
   return (
-    <main className="font-grotesk">
-      <HeroSection />
-      <EyeSection />
-      <SponsorsSection />
-      <EventsSection />
-      <RegisterSection />
-      <ContactSection />
-    </main>
+    <>
+      <ScrollProgress />
+      <main className="font-grotesk antialiased">
+        <HeroSection />
+        <EyeSection />
+        <SponsorsSection />
+        <EventsSection />
+        <RegisterSection />
+        <ContactSection />
+      </main>
+    </>
   );
 };
 
