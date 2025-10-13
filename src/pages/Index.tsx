@@ -7,10 +7,12 @@ import ContactSection from "@/components/ContactSection";
 import ScrollProgress from "@/components/ScrollProgress";
 
 import { useEffect, useRef, useState } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const Index = () => {
   const audioRef = useRef(null);
   const [hasPlayed, setHasPlayed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     function playAudio() {
@@ -48,8 +50,12 @@ const Index = () => {
 
   return (
     <>
-      <ScrollProgress />
-      <main className="font-grotesk antialiased">
+      <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
+      
+      {!isLoading && (
+        <>
+          <ScrollProgress />
+          <main className="font-grotesk antialiased">
         <HeroSection />
         <EyeSection />
         <SponsorsSection />
@@ -57,11 +63,13 @@ const Index = () => {
         <RegisterSection />
         <ContactSection />
 
-        <audio ref={audioRef} loop style={{ display: "none" }}>
-          <source src="/music/background.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      </main>
+            <audio ref={audioRef} loop style={{ display: "none" }}>
+              <source src="/music/background.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </main>
+        </>
+      )}
     </>
   );
 };
