@@ -11,6 +11,9 @@ const EventsSection = () => {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
+  const leafCount = isMobile ? 15 : 40;
 
   const events = [
     {
@@ -36,27 +39,30 @@ const EventsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="relative min-h-screen py-20 px-4 bg-gradient-to-b from-card to-nature-dark overflow-hidden">
-      {/* Enhanced floating leaves background */}
+    <section
+      ref={ref}
+      className="relative min-h-screen py-20 px-4 bg-gradient-to-b from-card to-nature-dark overflow-hidden"
+    >
+      {/* Floating leaves background */}
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y }}>
-        {[...Array(40)].map((_, i) => (
+        {[...Array(leafCount)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute text-nature-light"
             style={{
               left: `${Math.random() * 100}%`,
-              fontSize: `${20 + Math.random() * 50}px`,
-              filter: `blur(${Math.random() * 2}px)`,
+              fontSize: `${isMobile ? 15 + Math.random() * 20 : 20 + Math.random() * 50}px`,
+              filter: `blur(${isMobile ? Math.random() : Math.random() * 2}px)`,
             }}
             animate={{
-              y: ["0vh", "110vh"],
+              y: isMobile ? ["0vh", "50vh"] : ["0vh", "110vh"],
               x: [0, Math.random() * 80 - 40],
-              rotate: [0, Math.random() * 720],
+              rotate: [0, isMobile ? Math.random() * 360 : Math.random() * 720],
               opacity: [0, 0.6, 0],
               scale: [0.5, 1, 0.5],
             }}
             transition={{
-              duration: 12 + Math.random() * 15,
+              duration: isMobile ? 10 + Math.random() * 5 : 12 + Math.random() * 15,
               repeat: Infinity,
               delay: Math.random() * 8,
               ease: "easeInOut",
@@ -68,18 +74,19 @@ const EventsSection = () => {
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 100, scale: 0.8 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20 px-2"
         >
-          <h2 className="text-6xl md:text-9xl font-orbitron font-black mb-6 text-gradient-nature glow-nature leading-none">
+          <h2 className={`text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-4 text-gradient-nature glow-nature leading-none`}>
             <AnimatedText text="Events" delay={0.3} staggerDelay={0.08} />
           </h2>
-          <motion.p 
-            className="text-2xl md:text-3xl font-grotesk text-nature-light font-light"
+          <motion.p
+            className="text-lg sm:text-2xl md:text-3xl font-grotesk text-nature-light font-light"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -89,32 +96,28 @@ const EventsSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* Event Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
           {events.map((event, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 100, rotateX: -30, rotateY: -30 }}
+              initial={{ opacity: 0, y: 80, rotateX: -20, rotateY: -20 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0, rotateY: 0 }}
               viewport={{ once: true }}
-              transition={{ 
-                duration: 1, 
+              transition={{
+                duration: 0.9,
                 delay: index * 0.2,
                 type: "spring",
                 stiffness: 80,
               }}
-              whileHover={{ 
-                scale: 1.08, 
-                rotateY: 10,
-                rotateX: 5,
-                z: 50,
-              }}
-              className="relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2.5rem] p-10 border-4 border-nature-light/40 backdrop-blur-md overflow-hidden group perspective-1000 preserve-3d cursor-pointer"
+              whileHover={!isMobile ? { scale: 1.06, rotateY: 10, rotateX: 5, z: 50 } : {}}
+              className={`relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2rem] p-6 sm:p-10 border-2 sm:border-4 border-nature-light/30 backdrop-blur-md ${isMobile ? "backdrop-blur-sm" : ""} overflow-hidden group perspective-1000 preserve-3d cursor-pointer`}
             >
               {/* Animated background */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-nature-light/30 to-transparent rounded-[2.5rem]"
+                className="absolute inset-0 bg-gradient-to-br from-nature-light/25 to-transparent rounded-[2rem]"
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.15, 1],
                   rotate: [0, 10, 0],
                   opacity: [0.3, 0.6, 0.3],
                 }}
@@ -125,58 +128,48 @@ const EventsSection = () => {
                 }}
               />
 
-              {/* Enhanced leaf decoration */}
-              <motion.div 
-                className="absolute -top-12 -right-12 text-nature-light/20 group-hover:text-nature-light/40 transition-all duration-500"
-                animate={{
-                  rotate: [0, 360],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+              {/* Leaf decoration */}
+              <motion.div
+                className="absolute -top-8 -right-8 text-nature-light/20 group-hover:text-nature-light/40 transition-all duration-500"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Leaf size={180} strokeWidth={1.5} />
+                <Leaf size={isMobile ? 80 : 180} strokeWidth={1.5} />
               </motion.div>
 
-              <div className="relative z-10">
-                <motion.div 
-                  className="text-7xl mb-6"
-                  whileHover={{ scale: 1.2, rotate: 10 }}
+              {/* Card Content */}
+              <div className="relative z-10 text-center sm:text-left">
+                <motion.div
+                  className={`text-5xl sm:text-7xl mb-4`}
+                  whileHover={!isMobile ? { scale: 1.15, rotate: 10 } : {}}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {event.icon}
                 </motion.div>
-                <h3 className="text-4xl font-orbitron font-black mb-4 text-foreground drop-shadow-lg">
+                <h3 className="text-2xl sm:text-4xl font-orbitron font-black mb-2 sm:mb-4 text-foreground drop-shadow-lg">
                   <AnimatedText text={event.title} delay={0.5 + index * 0.2} staggerDelay={0.03} />
                 </h3>
-                <p className="text-xl font-grotesk text-nature-light font-light">
+                <p className="text-base sm:text-xl font-grotesk text-nature-light font-light">
                   {event.description}
                 </p>
               </div>
 
-              {/* Enhanced animated accent */}
+              {/* Bottom accent animation */}
               <motion.div
-                className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-nature-light/40 to-transparent rounded-tr-[2rem]"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                className="absolute bottom-0 left-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-tr from-nature-light/40 to-transparent rounded-tr-[1.5rem]"
+                animate={{ scale: [1, 1.25, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
 
               {/* Glow effect */}
-              <motion.div
-                className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  boxShadow: "0 0 60px rgba(74, 222, 128, 0.4), inset 0 0 60px rgba(74, 222, 128, 0.1)",
-                }}
-              />
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    boxShadow: "0 0 40px rgba(74, 222, 128, 0.4), inset 0 0 40px rgba(74, 222, 128, 0.1)",
+                  }}
+                />
+              )}
             </motion.div>
           ))}
         </div>

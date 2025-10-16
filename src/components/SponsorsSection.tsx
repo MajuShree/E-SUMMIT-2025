@@ -7,9 +7,7 @@ const sponsors = [
   { name: "Canara Bank", tier: "Title Sponsor", logo: "🏦", Icon: Building2, color: "from-cosmic-orange to-cosmic-pink" },
   { name: "Unstop", tier: "Powered By", logo: "⚡", Icon: Zap, color: "from-cosmic-cyan to-cosmic-blue" },
   { name: "IDEC", tier: "Presented By", logo: "🎯", Icon: Target, color: "from-cosmic-purple to-cosmic-pink" },
-  { name: "Sponsor 4", tier: "Gold", logo: "⭐", Icon: Sparkles, color: "from-cosmic-orange to-cosmic-cyan" },
-  { name: "Sponsor 5", tier: "Silver", logo: "✨", Icon: Sparkles, color: "from-cosmic-blue to-cosmic-purple" },
-  { name: "Sponsor 6", tier: "Silver", logo: "💫", Icon: Sparkles, color: "from-cosmic-pink to-cosmic-orange" },
+
 ];
 
 const generateFloatingStars = (count: number) => {

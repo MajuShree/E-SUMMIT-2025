@@ -115,8 +115,10 @@ const RegisterSection = () => {
             </motion.div>
 
             <h2 className="text-6xl md:text-8xl font-orbitron font-black mb-8 text-foreground leading-tight drop-shadow-2xl">
-              <AnimatedText text="Ready to Join?" delay={0.5} staggerDelay={0.05} />
-            </h2>
+  <span className="inline-block whitespace-nowrap md:whitespace-normal">
+    <AnimatedText text="Ready to Join?" delay={0.5} staggerDelay={0.05} />
+  </span>
+</h2>
             <p className="text-2xl md:text-3xl font-grotesk font-light text-nature-light mb-12 max-w-2xl mx-auto">
               Be part of something extraordinary. Register now for E Summit 2025.
             </p>

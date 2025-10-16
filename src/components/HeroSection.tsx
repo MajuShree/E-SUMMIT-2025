@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import Sparkles from "./Sparkles.tsx";
 
 const heroParts: string[] = [
   "Canara Bank Present's",
@@ -27,27 +27,30 @@ export default function HeroSection() {
   const [charIdx, setCharIdx] = useState<number>(0);
   const [showCursor, setShowCursor] = useState<boolean>(true);
   const [done, setDone] = useState<boolean>(false);
-  
-  const particles = useMemo(() => generateParticles(50), []);
-  const stars = useMemo(() => generateParticles(100), []);
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
+  // Reduce particle counts for mobile for performance
+  const particles = useMemo(() => generateParticles(isMobile ? 20 : 50), [isMobile]);
+  const stars = useMemo(() => generateParticles(isMobile ? 50 : 100), [isMobile]);
 
   useEffect(() => {
     if (currentLine < heroParts.length) {
       if (charIdx <= heroParts[currentLine].length) {
         const timeout = setTimeout(() => {
-          setDisplayed((old) =>
-            old.map((val, idx) =>
-              idx === currentLine ? heroParts[currentLine].slice(0, charIdx) : val
-            )
-          );
+          setDisplayed((prev) => {
+            const updated = [...prev];
+            updated[currentLine] = heroParts[currentLine].slice(0, charIdx);
+            return updated;
+          });
           setCharIdx((idx) => idx + 1);
-        }, 1);
+        }, 50);
         return () => clearTimeout(timeout);
       } else {
         setTimeout(() => {
-          setCurrentLine((l) => l + 1);
+          setCurrentLine((line) => line + 1);
           setCharIdx(0);
-        }, 100);
+        }, 400);
       }
     } else {
       setDone(true);
@@ -56,7 +59,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (done) {
-      const interval = setInterval(() => setShowCursor((c) => !c), 100);
+      const interval = setInterval(() => setShowCursor((c) => !c), 500);
       return () => clearInterval(interval);
     }
   }, [done]);
@@ -67,14 +70,14 @@ export default function HeroSection() {
     return (
       <>
         {line.slice(0, idx)}
-        <span className="text-cyan-400">{line.slice(idx, idx + 6)}</span>
+        <span className="text-cosmic-cyan font-bold">{line.slice(idx, idx + 6)}</span>
         {line.slice(idx + 6)}
       </>
     );
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-background overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center min-h-screen py-8 bg-background overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 opacity-60">
         <div className="absolute inset-0 bg-gradient-to-br from-cosmic-purple/30 via-cosmic-blue/20 to-cosmic-pink/30 animate-pulse-glow" />
@@ -85,7 +88,7 @@ export default function HeroSection() {
       {particles.map((particle) => (
         <motion.div
           key={`particle-${particle.id}`}
-          className="absolute rounded-full bg-gradient-to-br from-cosmic-purple to-cosmic-pink blur-xl"
+          className={`absolute rounded-full bg-gradient-to-br from-cosmic-purple to-cosmic-pink ${isMobile ? "blur-sm" : "blur-xl"}`}
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
@@ -93,7 +96,7 @@ export default function HeroSection() {
             height: `${particle.size}px`,
           }}
           animate={{
-            y: [0, -30, 0],
+            y: isMobile ? [0, -10, 0] : [0, -30, 0],
             opacity: [0.3, 0.8, 0.3],
             scale: [1, 1.2, 1],
           }}
@@ -130,154 +133,58 @@ export default function HeroSection() {
         />
       ))}
 
-      {/* Floating sparkles */}
-      <motion.div
-        className="absolute top-20 left-20"
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <Sparkles className="w-12 h-12 text-cosmic-cyan" />
-      </motion.div>
-      
-      <motion.div
-        className="absolute bottom-20 right-20"
-        animate={{
-          y: [0, 20, 0],
-          rotate: [360, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        <Sparkles className="w-16 h-16 text-cosmic-pink" />
-      </motion.div>
+      {/* Sparkles */}
+      {!isMobile && (
+        <>
+          <motion.div
+            className="absolute top-6 left-6 md:top-20 md:left-20"
+            animate={{ y: [0, -20, 0], rotate: [0, 360] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Sparkles className="w-8 h-8 md:w-12 md:h-12 text-cosmic-cyan" />
+          </motion.div>
 
-      {/* Main content */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-        className="relative z-10"
-      >
+          <motion.div
+            className="absolute bottom-6 right-6 md:bottom-20 md:right-20"
+            animate={{ y: [0, 20, 0], rotate: [360, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Sparkles className="w-10 h-10 md:w-16 md:h-16 text-cosmic-pink" />
+          </motion.div>
+        </>
+      )}
+
+      {/* Main text */}
+      <div className="z-10 w-full px-4 sm:px-8">
         <h1 className="text-center leading-tight perspective-1000">
-          <motion.span 
-            className="block font-orbitron font-bold mb-4 text-gradient-cosmic glow-cosmic text-5xl md:text-7xl lg:text-8xl preserve-3d"
-            animate={{
-              rotateY: [0, 5, 0, -5, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {displayed[0]}
-            {currentLine === 0 && (
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-              >
-                |
-              </motion.span>
-            )}
-          </motion.span>
-          <motion.span 
-            className="block font-orbitron font-bold text-gradient-cosmic glow-cosmic text-4xl md:text-6xl lg:text-7xl preserve-3d"
-            animate={{
-              rotateY: [0, -5, 0, 5, 0],
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {displayed[1]}
-            {currentLine === 1 && (
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity }}
-              >
-                |
-              </motion.span>
-            )}
-          </motion.span>
-        </h1>
-        
-        <div className="w-full flex justify-center mt-8">
-          <motion.div
-            className="text-2xl md:text-3xl font-grotesk font-semibold text-cosmic-cyan glow-cyan"
-            style={{ minWidth: "18ch", textAlign: "center" }}
-            animate={{
-              textShadow: [
-                "0 0 30px rgba(59, 130, 246, 0.8)",
-                "0 0 60px rgba(59, 130, 246, 1)",
-                "0 0 30px rgba(59, 130, 246, 0.8)",
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {(currentLine > 1 || currentLine === 2) && (
-              <>
-                {currentLine === 2 ? highlightUnstop(displayed[2]) : highlightUnstop(heroParts[2])}
-                {(currentLine === 2 || (currentLine === 3 && displayed[3] === "")) && (
-                  <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                )}
-              </>
-            )}
-          </motion.div>
-        </div>
-        
-        <div className="w-full flex justify-center mt-4">
-          <motion.div
-            className="text-xl md:text-2xl font-grotesk font-semibold text-muted-foreground"
-            style={{ minWidth: "13ch", textAlign: "center" }}
-          >
-            {(currentLine > 2 || currentLine === 3) && (
-              <>
-                {displayed[3]}
-                {currentLine === 3 && (
-                  <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                )}
-                {done && (
-                  <motion.span
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    ..
-                  </motion.span>
-                )}
-              </>
-            )}
-          </motion.div>
-        </div>
-      </motion.div>
+          {displayed.map((line, idx) => {
+            const sizeClasses = [
+              "text-xl sm:text-2xl md:text-5xl lg:text-6xl",
+              "text-lg sm:text-3xl md:text-6xl lg:text-7xl",
+              "text-base sm:text-2xl md:text-5xl lg:text-6xl",
+              "text-sm sm:text-xl md:text-3xl lg:text-4xl",
+            ];
 
-      {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+            const content = idx === 2 ? highlightUnstop(line) : line;
+
+            return (
+              <motion.span
+                key={idx}
+                className={`block font-orbitron font-bold text-gradient-cosmic glow-cosmic preserve-3d mb-2 ${sizeClasses[idx]}`}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 + idx * 0.2 }}
+              >
+                {content}
+                {currentLine === idx && showCursor && <span className="animate-blink">|</span>}
+              </motion.span>
+            );
+          })}
+        </h1>
+      </div>
+
+      {/* Bottom gradient */}
+      <div className={`absolute bottom-0 left-0 right-0 ${isMobile ? "h-16" : "h-32"} bg-gradient-to-t from-background to-transparent`} />
     </div>
   );
 }
