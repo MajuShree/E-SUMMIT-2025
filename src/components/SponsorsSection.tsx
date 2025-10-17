@@ -4,7 +4,7 @@ import { Building2, Sparkles, Zap, Target } from "lucide-react";
 import { useRef, useMemo } from "react";
 
 const sponsors = [
-  { name: "Canara Bank", tier: "Title Sponsor", logo: "🏦", Icon: Building2, color: "from-cosmic-orange to-cosmic-pink" },
+
   { name: "Unstop", tier: "Powered By", logo: "⚡", Icon: Zap, color: "from-cosmic-cyan to-cosmic-blue" },
   { name: "IDEC", tier: "Presented By", logo: "🎯", Icon: Target, color: "from-cosmic-purple to-cosmic-pink" },
 
