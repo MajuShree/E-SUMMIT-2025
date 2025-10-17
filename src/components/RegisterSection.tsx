@@ -15,8 +15,11 @@ const RegisterSection = () => {
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center py-20 px-4 bg-gradient-to-b from-nature-dark via-background to-background overflow-hidden perspective-1000">
-      {/* Enhanced animated leaf particles */}
+    <section
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center py-16 sm:py-20 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-nature-dark via-background to-background overflow-hidden perspective-1000"
+    >
+      {/* Animated background leaves */}
       <div className="absolute inset-0">
         {[...Array(30)].map((_, i) => (
           <motion.div
@@ -39,8 +42,8 @@ const RegisterSection = () => {
               ease: "easeInOut",
             }}
           >
-            <Leaf 
-              size={30 + Math.random() * 60} 
+            <Leaf
+              size={24 + Math.random() * 40}
               className="text-nature/40 drop-shadow-[0_0_10px_rgba(74,222,128,0.3)]"
             />
           </motion.div>
@@ -51,7 +54,7 @@ const RegisterSection = () => {
         initial={{ opacity: 0, scale: 0.5, rotateY: -30 }}
         whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
         viewport={{ once: true }}
-        transition={{ 
+        transition={{
           duration: 1.2,
           type: "spring",
           stiffness: 80,
@@ -59,10 +62,9 @@ const RegisterSection = () => {
         style={{ scale }}
         className="relative z-10 text-center max-w-5xl mx-auto preserve-3d"
       >
-        {/* Enhanced leaf-shaped container */}
-        <motion.div 
-          className="relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[4rem] p-20 border-4 border-nature-light/60 overflow-hidden"
-          whileHover={{ 
+        <motion.div
+          className="relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-12 md:p-16 border-4 border-nature-light/60 overflow-hidden"
+          whileHover={{
             scale: 1.02,
             boxShadow: "0 30px 80px -20px rgba(74, 222, 128, 0.6)",
           }}
@@ -70,34 +72,39 @@ const RegisterSection = () => {
             boxShadow: "0 20px 60px -10px rgba(74, 222, 128, 0.4)",
           }}
         >
-          {/* Animated background overlay */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-br from-nature-light/20 to-transparent rounded-[4rem]"
             style={{ rotate }}
           />
 
-          {/* Enhanced decorative leaves */}
+          {/* Decorative leaves */}
           <motion.div
-            className="absolute -top-10 -left-10 text-nature-light drop-shadow-[0_0_20px_rgba(74,222,128,0.6)]"
-            animate={{ 
+            className="absolute -top-8 -left-8 sm:-top-10 sm:-left-10 text-nature-light drop-shadow-[0_0_20px_rgba(74,222,128,0.6)]"
+            animate={{
               rotate: [0, 20, 0],
               scale: [1, 1.1, 1],
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Leaf size={80} strokeWidth={2} />
+            <Leaf size={60} strokeWidth={2} />
           </motion.div>
           <motion.div
-            className="absolute -bottom-10 -right-10 text-nature-light drop-shadow-[0_0_20px_rgba(74,222,128,0.6)]"
-            animate={{ 
+            className="absolute -bottom-8 -right-8 sm:-bottom-10 sm:-right-10 text-nature-light drop-shadow-[0_0_20px_rgba(74,222,128,0.6)]"
+            animate={{
               rotate: [0, -20, 0],
               scale: [1, 1.1, 1],
             }}
-            transition={{ duration: 4, repeat: Infinity, delay: 2, ease: "easeInOut" }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: 2,
+              ease: "easeInOut",
+            }}
           >
-            <Leaf size={80} strokeWidth={2} />
+            <Leaf size={60} strokeWidth={2} />
           </motion.div>
 
+          {/* Text content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -105,24 +112,29 @@ const RegisterSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative z-10"
           >
+            {/* Sparkles */}
             <motion.div
-              className="flex items-center justify-center gap-3 mb-8"
+              className="flex items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Sparkles className="text-nature-light" size={32} />
               <Sparkles className="text-nature-light" size={24} />
+              <Sparkles className="text-nature-light" size={18} />
             </motion.div>
 
-            <h2 className="text-6xl md:text-8xl font-orbitron font-black mb-8 text-foreground leading-tight drop-shadow-2xl">
-  <span className="inline-block whitespace-nowrap md:whitespace-normal">
-    <AnimatedText text="Ready to Join?" delay={0.5} staggerDelay={0.05} />
-  </span>
-</h2>
-            <p className="text-2xl md:text-3xl font-grotesk font-light text-nature-light mb-12 max-w-2xl mx-auto">
+            {/* Responsive Heading */}
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-orbitron font-black mb-6 sm:mb-8 text-foreground leading-tight drop-shadow-2xl">
+              <span className="inline-block whitespace-nowrap md:whitespace-normal">
+                <AnimatedText text="Ready to Join?" delay={0.5} staggerDelay={0.05} />
+              </span>
+            </h2>
+
+            {/* Responsive paragraph */}
+            <p className="text-lg sm:text-xl md:text-2xl font-grotesk font-light text-nature-light mb-8 sm:mb-12 max-w-md sm:max-w-2xl mx-auto px-2">
               Be part of something extraordinary. Register now for E Summit 2025.
             </p>
 
+            {/* Responsive Button */}
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -130,7 +142,7 @@ const RegisterSection = () => {
             >
               <Button
                 size="lg"
-                className="text-2xl px-16 py-10 rounded-full bg-foreground text-background hover:bg-foreground/90 font-orbitron font-black group transition-all duration-300 relative overflow-hidden"
+                className="text-lg sm:text-xl md:text-2xl px-8 sm:px-12 md:px-16 py-6 sm:py-8 md:py-10 rounded-full bg-foreground text-background hover:bg-foreground/90 font-orbitron font-black group transition-all duration-300 relative overflow-hidden"
                 style={{
                   boxShadow: "0 10px 40px -10px rgba(255, 255, 255, 0.5)",
                 }}
@@ -146,25 +158,28 @@ const RegisterSection = () => {
                     ease: "linear",
                   }}
                 />
-                <span className="relative z-10 flex items-center gap-3">
+                <span className="relative z-10 flex items-center gap-2 sm:gap-3">
                   Register Now
-                  <ArrowRight className="group-hover:translate-x-3 transition-transform duration-300" size={28} />
+                  <ArrowRight
+                    className="group-hover:translate-x-3 transition-transform duration-300"
+                    size={24}
+                  />
                 </span>
               </Button>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Enhanced floating text */}
+        {/* Bottom text */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16"
+          className="mt-10 sm:mt-16"
         >
           <motion.p
-            className="text-lg font-grotesk text-muted-foreground"
+            className="text-sm sm:text-base md:text-lg font-grotesk text-muted-foreground"
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
