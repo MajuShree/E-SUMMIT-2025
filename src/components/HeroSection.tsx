@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Sparkles from "./Sparkles.tsx";
 
 const heroParts: string[] = [
-  "Canara Bank Present's",
   "BIT's E Summit 2025",
   "powered by Unstop ",
   "presented by idec",
