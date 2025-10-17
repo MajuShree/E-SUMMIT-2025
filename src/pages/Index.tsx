@@ -5,6 +5,7 @@ import EventsSection from "@/components/EventsSection";
 import RegisterSection from "@/components/RegisterSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollProgress from "@/components/ScrollProgress";
+import AboutSection from "@/components/AboutSection";
 
 import { useEffect, useRef, useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -61,6 +62,7 @@ const Index = () => {
         <SponsorsSection />
         <EventsSection />
         <RegisterSection />
+        <AboutSection />
         <ContactSection />
 
             <audio ref={audioRef} loop style={{ display: "none" }}>
