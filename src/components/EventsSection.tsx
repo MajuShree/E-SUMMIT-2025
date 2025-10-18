@@ -17,14 +17,14 @@ const EventsSection = () => {
 
   const events = [
     {
-      title: "24hr Hackathon",
-      description: "Build innovative solutions in 24 hours",
+      title: "Xcelerate 24hr Hackathon",
+      description: " A 24hr Hackathon to build and innovative solutions",
       icon: "💻",
       registerLink: "https://your-hackathon-link.com", // <-- add your real link
     },
     {
-      title: "Ideathon",
-      description: "Pitch your groundbreaking ideas",
+      title: "Ideatattva",
+      description: " Ideathon to pitch your groundbreaking ideas",
       icon: "💡",
       registerLink: "https://your-ideathon-link.com", // <-- add your real link
     },
