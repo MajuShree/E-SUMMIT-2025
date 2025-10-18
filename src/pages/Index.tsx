@@ -6,6 +6,7 @@ import RegisterSection from "@/components/RegisterSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollProgress from "@/components/ScrollProgress";
 import AboutSection from "@/components/AboutSection";
+import Ecosystem from "@/components/Ecosystem";
 
 import { useEffect, useRef, useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -60,6 +61,7 @@ const Index = () => {
         <HeroSection />
         <EyeSection />
         <SponsorsSection />
+        <Ecosystem />
         <EventsSection />
         <RegisterSection />
         <AboutSection />
