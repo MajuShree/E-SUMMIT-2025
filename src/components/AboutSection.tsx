@@ -48,6 +48,30 @@ const AboutIEDCBIT: React.FC = () => {
             />
           </svg>
 
+          {/* ABOUT BIT SECTION */}
+          <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20 mb-10">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
+              ABOUT BIT
+            </h2>
+            <p className="text-sm sm:text-base leading-relaxed text-[#f3e6ff] drop-shadow-[0_0_8px_#a64dff]">
+              Bangalore Institute of Technology (BIT) was started in the year
+              1979 and is managed by the Rajya Vokkaligara Sangha (RVS). BIT,
+              with the intention of providing quality education in the field of
+              technology and management, has reached an enviable position and is
+              positioned as a premier educational institution imparting
+              innovative and quality education with a vision to become a unique
+              learning center with a global outlook and human values. At present,
+              BIT has 13 undergraduate, 5 postgraduate programs and 15 research
+              and development centers affiliated to Visvesvaraya Technological
+              University, approved by the All India Council for Technical
+              Education (AICTE), New Delhi, recognized by the University Grants
+              Commission (UGC) as per the act 1956 under 2f and 12b, accredited
+              by NBA (9 UG Programs) and ranked by the National Institutional
+              Ranking Framework (NIRF) (Band: 251-300).
+            </p>
+          </section>
+
+          {/* ABOUT IEDC-BIT SECTION */}
           <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
               ABOUT IEDC-BIT
@@ -112,4 +136,5 @@ const AboutIEDCBIT: React.FC = () => {
 };
 
 export default AboutIEDCBIT;
+
 
