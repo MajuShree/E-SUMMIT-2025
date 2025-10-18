@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Leaf } from "lucide-react";
+import { Leaf, ArrowRight } from "lucide-react";
 import AnimatedText from "./AnimatedText";
 
 const EventsSection = () => {
@@ -20,11 +20,13 @@ const EventsSection = () => {
       title: "24hr Hackathon",
       description: "Build innovative solutions in 24 hours",
       icon: "💻",
+      registerLink: "https://your-hackathon-link.com", // <-- add your real link
     },
     {
       title: "Ideathon",
       description: "Pitch your groundbreaking ideas",
       icon: "💡",
+      registerLink: "https://your-ideathon-link.com", // <-- add your real link
     },
     {
       title: "Workshop",
@@ -82,7 +84,7 @@ const EventsSection = () => {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12 sm:mb-20 px-2"
         >
-          <h2 className={`text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-4 text-gradient-nature glow-nature leading-none`}>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-4 text-gradient-nature glow-nature leading-none">
             <AnimatedText text="Events" delay={0.3} staggerDelay={0.08} />
           </h2>
           <motion.p
@@ -111,7 +113,9 @@ const EventsSection = () => {
                 stiffness: 80,
               }}
               whileHover={!isMobile ? { scale: 1.06, rotateY: 10, rotateX: 5, z: 50 } : {}}
-              className={`relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2rem] p-6 sm:p-10 border-2 sm:border-4 border-nature-light/30 backdrop-blur-md ${isMobile ? "backdrop-blur-sm" : ""} overflow-hidden group perspective-1000 preserve-3d cursor-pointer`}
+              className={`relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2rem] p-6 sm:p-10 border-2 sm:border-4 border-nature-light/30 backdrop-blur-md ${
+                isMobile ? "backdrop-blur-sm" : ""
+              } overflow-hidden group perspective-1000 preserve-3d cursor-pointer`}
             >
               {/* Animated background */}
               <motion.div
@@ -138,20 +142,38 @@ const EventsSection = () => {
               </motion.div>
 
               {/* Card Content */}
-              <div className="relative z-10 text-center sm:text-left">
+              <div className="relative z-10 text-center sm:text-left flex flex-col items-center sm:items-start">
                 <motion.div
-                  className={`text-5xl sm:text-7xl mb-4`}
+                  className="text-5xl sm:text-7xl mb-4"
                   whileHover={!isMobile ? { scale: 1.15, rotate: 10 } : {}}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {event.icon}
                 </motion.div>
+
                 <h3 className="text-2xl sm:text-4xl font-orbitron font-black mb-2 sm:mb-4 text-foreground drop-shadow-lg">
-                  <AnimatedText text={event.title} delay={0.5 + index * 0.2} staggerDelay={0.03} />
+                  <AnimatedText
+                    text={event.title}
+                    delay={0.5 + index * 0.2}
+                    staggerDelay={0.03}
+                  />
                 </h3>
-                <p className="text-base sm:text-xl font-grotesk text-nature-light font-light">
+
+                <p className="text-base sm:text-xl font-grotesk text-nature-light font-light mb-4">
                   {event.description}
                 </p>
+
+                {/* Register Button for Hackathon & Ideathon */}
+                {event.registerLink && (
+                  <a
+                    href={event.registerLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-nature-light text-nature-dark font-semibold px-5 py-2 rounded-full shadow-lg hover:bg-nature hover:text-white transition-all duration-300"
+                  >
+                    Register <ArrowRight size={18} />
+                  </a>
+                )}
               </div>
 
               {/* Bottom accent animation */}
@@ -166,7 +188,8 @@ const EventsSection = () => {
                 <motion.div
                   className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    boxShadow: "0 0 40px rgba(74, 222, 128, 0.4), inset 0 0 40px rgba(74, 222, 128, 0.1)",
+                    boxShadow:
+                      "0 0 40px rgba(74, 222, 128, 0.4), inset 0 0 40px rgba(74, 222, 128, 0.1)",
                   }}
                 />
               )}
