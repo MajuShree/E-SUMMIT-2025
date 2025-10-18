@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Leaf, ArrowRight, Sparkles } from "lucide-react";
+import { Leaf, Sparkles } from "lucide-react";
 import AnimatedText from "./AnimatedText";
 
 const RegisterSection = () => {
@@ -125,48 +124,18 @@ const RegisterSection = () => {
             {/* Responsive Heading */}
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-orbitron font-black mb-6 sm:mb-8 text-foreground leading-tight drop-shadow-2xl">
               <span className="inline-block whitespace-nowrap md:whitespace-normal">
-                <AnimatedText text="Ready to Join?" delay={0.5} staggerDelay={0.05} />
+                <AnimatedText
+                  text="Ready to Join?"
+                  delay={0.5}
+                  staggerDelay={0.05}
+                />
               </span>
             </h2>
 
             {/* Responsive paragraph */}
-            <p className="text-lg sm:text-xl md:text-2xl font-grotesk font-light text-nature-light mb-8 sm:mb-12 max-w-md sm:max-w-2xl mx-auto px-2">
-              Be part of something extraordinary. Register now for E Summit 2025.
+            <p className="text-lg sm:text-xl md:text-2xl font-grotesk font-light text-nature-light mb-4 sm:mb-6 max-w-md sm:max-w-2xl mx-auto px-2">
+              Be part of something extraordinary. E Summit 2025 awaits you.
             </p>
-
-            {/* Responsive Button */}
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              <Button
-                size="lg"
-                className="text-lg sm:text-xl md:text-2xl px-8 sm:px-12 md:px-16 py-6 sm:py-8 md:py-10 rounded-full bg-foreground text-background hover:bg-foreground/90 font-orbitron font-black group transition-all duration-300 relative overflow-hidden"
-                style={{
-                  boxShadow: "0 10px 40px -10px rgba(255, 255, 255, 0.5)",
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  animate={{
-                    x: ["-200%", "200%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-                <span className="relative z-10 flex items-center gap-2 sm:gap-3">
-                  Register Now
-                  <ArrowRight
-                    className="group-hover:translate-x-3 transition-transform duration-300"
-                    size={24}
-                  />
-                </span>
-              </Button>
-            </motion.div>
           </motion.div>
         </motion.div>
 
