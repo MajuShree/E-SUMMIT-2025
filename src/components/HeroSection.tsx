@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Sparkles from "./Sparkles.tsx";
 
 const heroParts: string[] = [
-  "BIT's E Summit 2025",
+  "Nikshtara E Summit 2025",
   "powered by Unstop ",
   "presented by iedc",
 ];
