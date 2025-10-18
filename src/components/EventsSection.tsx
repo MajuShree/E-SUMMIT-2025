@@ -17,7 +17,7 @@ const EventsSection = () => {
 
   const events = [
     {
-      title: "Xcelerate 24hr Hackathon",
+      title: "Xcelerate",
       description: " A 24hr Hackathon to build and innovative solutions",
       icon: "💻",
       registerLink: "https://your-hackathon-link.com", // <-- add your real link
