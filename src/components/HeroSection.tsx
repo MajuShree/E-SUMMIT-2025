@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import Sparkles from "./Sparkles.tsx";
 
 const heroParts: string[] = [
-  "Nikshtara E Summit 2025",
-  "powered by Unstop ",
+  "Nikshtara",
+  "X",
+  "BIT'S E Summit 25",
+  "powered by Unstop",
   "presented by iedc",
 ];
 
@@ -21,7 +23,7 @@ const generateParticles = (count: number) => {
 };
 
 export default function HeroSection() {
-  const [displayed, setDisplayed] = useState<string[]>(["", "", "", ""]);
+  const [displayed, setDisplayed] = useState<string[]>(["", "", "", "", ""]);
   const [currentLine, setCurrentLine] = useState<number>(0);
   const [charIdx, setCharIdx] = useState<number>(0);
   const [showCursor, setShowCursor] = useState<boolean>(true);
@@ -29,7 +31,6 @@ export default function HeroSection() {
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
 
-  // Reduce particle counts for mobile for performance
   const particles = useMemo(() => generateParticles(isMobile ? 20 : 50), [isMobile]);
   const stars = useMemo(() => generateParticles(isMobile ? 50 : 100), [isMobile]);
 
@@ -87,7 +88,9 @@ export default function HeroSection() {
       {particles.map((particle) => (
         <motion.div
           key={`particle-${particle.id}`}
-          className={`absolute rounded-full bg-gradient-to-br from-cosmic-purple to-cosmic-pink ${isMobile ? "blur-sm" : "blur-xl"}`}
+          className={`absolute rounded-full bg-gradient-to-br from-cosmic-purple to-cosmic-pink ${
+            isMobile ? "blur-sm" : "blur-xl"
+          }`}
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
@@ -162,20 +165,30 @@ export default function HeroSection() {
               "text-lg sm:text-3xl md:text-6xl lg:text-7xl",
               "text-base sm:text-2xl md:text-5xl lg:text-6xl",
               "text-sm sm:text-xl md:text-3xl lg:text-4xl",
+              "text-xs sm:text-lg md:text-2xl lg:text-3xl",
             ];
 
-            const content = idx === 2 ? highlightUnstop(line) : line;
+            const isWhiteGlowLine = idx <= 2; // First 3 lines: Nikshtara, X, BIT'S E Summit 25
+            const content = idx === 3 ? highlightUnstop(line) : line;
 
             return (
               <motion.span
                 key={idx}
-                className={`block font-orbitron font-bold text-gradient-cosmic glow-cosmic preserve-3d mb-2 ${sizeClasses[idx]}`}
+                className={`block font-orbitron font-bold preserve-3d mb-2 ${
+                  sizeClasses[idx]
+                } ${
+                  isWhiteGlowLine
+                    ? "text-white drop-shadow-[0_0_15px_#ffffffb3]"
+                    : "text-gradient-cosmic glow-cosmic"
+                }`}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 + idx * 0.2 }}
               >
                 {content}
-                {currentLine === idx && showCursor && <span className="animate-blink">|</span>}
+                {currentLine === idx && showCursor && (
+                  <span className="animate-blink">|</span>
+                )}
               </motion.span>
             );
           })}
@@ -183,7 +196,11 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom gradient */}
-      <div className={`absolute bottom-0 left-0 right-0 ${isMobile ? "h-16" : "h-32"} bg-gradient-to-t from-background to-transparent`} />
+      <div
+        className={`absolute bottom-0 left-0 right-0 ${
+          isMobile ? "h-16" : "h-32"
+        } bg-gradient-to-t from-background to-transparent`}
+      />
     </div>
   );
 }
