@@ -25,7 +25,7 @@ const EcoSystemPartner: React.FC = () => {
 
         <div className="flex flex-wrap items-center justify-center gap-10">
           <img
-            src="public/CEDAT Logo_20251018_144704_0000.png"
+            src="public/1000437640.jpg"
             alt="CEDAT Logo"
             className="w-52 h-auto object-contain rounded-xl shadow-2xl transition-transform duration-300 hover:scale-105"
           />
