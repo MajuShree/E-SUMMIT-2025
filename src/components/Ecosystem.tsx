@@ -29,11 +29,7 @@ const EcoSystemPartner: React.FC = () => {
             alt="UBX "
             className="w-52 h-auto object-contain rounded-xl shadow-2xl transition-transform duration-300 hover:scale-105"
           />
-          <img
-            src="/CEDAT%20Logo_20251018_144704_0000.png"
-            alt="CEDAT "
-            className="w-52 h-auto object-contain rounded-xl shadow-2xl transition-transform duration-300 hover:scale-105"
-          />
+          
         </div>
       </section>
     </div>
