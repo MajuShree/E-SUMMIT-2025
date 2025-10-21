@@ -72,7 +72,7 @@ const AboutIEDCBIT: React.FC = () => {
           </section>
 
           {/* ABOUT IEDC-BIT SECTION */}
-          <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20">
+          <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20 mb-10">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
               ABOUT IEDC-BIT
             </h2>
