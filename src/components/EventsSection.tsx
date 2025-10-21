@@ -18,15 +18,15 @@ const EventsSection = () => {
   const events = [
     {
       title: "Xcelerate",
-      description: "A 24hr Hackathon to build and innovate solutions",
+      description: " A 24hr Hackathon to build and innovative solutions",
       icon: "💻",
-      registerLink: "https://your-hackathon-link.com",
+      registerLink: "https://your-hackathon-link.com", // <-- add your real link
     },
     {
       title: "Ideatattva",
-      description: "Ideathon to pitch your groundbreaking ideas",
+      description: " Ideathon to pitch your groundbreaking ideas",
       icon: "💡",
-      registerLink: "https://your-ideathon-link.com",
+      registerLink: "https://your-ideathon-link.com", // <-- add your real link
     },
     {
       title: "Workshop",
@@ -43,14 +43,14 @@ const EventsSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen py-20 px-4 bg-gradient-to-b from-gray-900 to-black overflow-hidden"
+      className="relative min-h-screen py-20 px-4 bg-gradient-to-b from-card to-nature-dark overflow-hidden"
     >
       {/* Floating leaves background */}
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y }}>
         {[...Array(leafCount)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute text-white/70"
+            className="absolute text-nature-light"
             style={{
               left: `${Math.random() * 100}%`,
               fontSize: `${isMobile ? 15 + Math.random() * 20 : 20 + Math.random() * 50}px`,
@@ -84,11 +84,11 @@ const EventsSection = () => {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12 sm:mb-20 px-2"
         >
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-4 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.6)] leading-none">
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-orbitron font-black mb-4 text-gradient-nature glow-nature leading-none">
             <AnimatedText text="Events" delay={0.3} staggerDelay={0.08} />
           </h2>
           <motion.p
-            className="text-lg sm:text-2xl md:text-3xl font-grotesk text-white/90 font-light"
+            className="text-lg sm:text-2xl md:text-3xl font-grotesk text-nature-light font-light"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -113,17 +113,17 @@ const EventsSection = () => {
                 stiffness: 80,
               }}
               whileHover={!isMobile ? { scale: 1.06, rotateY: 10, rotateX: 5, z: 50 } : {}}
-              className={`relative bg-gradient-to-br from-white/10 via-white/5 to-transparent rounded-[2rem] p-6 sm:p-10 border-2 sm:border-4 border-white/40 backdrop-blur-md ${
+              className={`relative bg-gradient-to-br from-nature via-nature to-nature-dark rounded-[2rem] p-6 sm:p-10 border-2 sm:border-4 border-nature-light/30 backdrop-blur-md ${
                 isMobile ? "backdrop-blur-sm" : ""
               } overflow-hidden group perspective-1000 preserve-3d cursor-pointer`}
             >
               {/* Animated background */}
               <motion.div
-                className="absolute inset-0 bg-white/10 rounded-[2rem]"
+                className="absolute inset-0 bg-gradient-to-br from-nature-light/25 to-transparent rounded-[2rem]"
                 animate={{
                   scale: [1, 1.15, 1],
                   rotate: [0, 10, 0],
-                  opacity: [0.2, 0.4, 0.2],
+                  opacity: [0.3, 0.6, 0.3],
                 }}
                 transition={{
                   duration: 5,
@@ -134,7 +134,7 @@ const EventsSection = () => {
 
               {/* Leaf decoration */}
               <motion.div
-                className="absolute -top-8 -right-8 text-white/20 group-hover:text-white/50 transition-all duration-500"
+                className="absolute -top-8 -right-8 text-nature-light/20 group-hover:text-nature-light/40 transition-all duration-500"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
@@ -144,14 +144,14 @@ const EventsSection = () => {
               {/* Card Content */}
               <div className="relative z-10 text-center sm:text-left flex flex-col items-center sm:items-start">
                 <motion.div
-                  className="text-5xl sm:text-7xl mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                  className="text-5xl sm:text-7xl mb-4"
                   whileHover={!isMobile ? { scale: 1.15, rotate: 10 } : {}}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {event.icon}
                 </motion.div>
 
-                <h3 className="text-2xl sm:text-4xl font-orbitron font-black mb-2 sm:mb-4 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.7)]">
+                <h3 className="text-2xl sm:text-4xl font-orbitron font-black mb-2 sm:mb-4 text-foreground drop-shadow-lg">
                   <AnimatedText
                     text={event.title}
                     delay={0.5 + index * 0.2}
@@ -159,7 +159,8 @@ const EventsSection = () => {
                   />
                 </h3>
 
-                <p className="text-base sm:text-xl font-grotesk text-white/90 font-light mb-4">
+                {/* ✅ Increased visibility of descriptions */}
+                <p className="text-base sm:text-xl font-grotesk text-white font-medium mb-4 drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] leading-relaxed">
                   {event.description}
                 </p>
 
@@ -169,7 +170,7 @@ const EventsSection = () => {
                     href={event.registerLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-white text-black font-semibold px-5 py-2 rounded-full shadow-lg hover:bg-gray-200 hover:text-black transition-all duration-300"
+                    className="flex items-center gap-2 bg-nature-light text-nature-dark font-semibold px-5 py-2 rounded-full shadow-lg hover:bg-nature hover:text-white transition-all duration-300"
                   >
                     Register <ArrowRight size={18} />
                   </a>
@@ -178,7 +179,7 @@ const EventsSection = () => {
 
               {/* Bottom accent animation */}
               <motion.div
-                className="absolute bottom-0 left-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/20 rounded-tr-[1.5rem]"
+                className="absolute bottom-0 left-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-tr from-nature-light/40 to-transparent rounded-tr-[1.5rem]"
                 animate={{ scale: [1, 1.25, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -189,7 +190,7 @@ const EventsSection = () => {
                   className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     boxShadow:
-                      "0 0 40px rgba(255,255,255,0.6), inset 0 0 40px rgba(255,255,255,0.2)",
+                      "0 0 40px rgba(74, 222, 128, 0.4), inset 0 0 40px rgba(74, 222, 128, 0.1)",
                   }}
                 />
               )}
@@ -202,4 +203,3 @@ const EventsSection = () => {
 };
 
 export default EventsSection;
-
