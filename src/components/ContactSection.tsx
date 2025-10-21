@@ -20,9 +20,9 @@ const ContactSection = () => {
       icon: User,
     },
     {
-      name: "Anish G",
+      name: "Sagar L",
       role: "Coordinator",
-      phone: "7842619699",
+      phone: "7760556168",
       icon: User,
     },
   ];
@@ -216,7 +216,7 @@ const ContactSection = () => {
             className="text-xs sm:text-sm font-grotesk text-muted-foreground"
             whileHover={{ scale: 1.05, color: "hsl(var(--cosmic-cyan))" }}
           >
-            © 2025 Canara BIT E Summit. All rights reserved.
+           Nikshtara X BIT'S E Summit. All rights reserved.
           </motion.p>
         </motion.div>
       </div>
