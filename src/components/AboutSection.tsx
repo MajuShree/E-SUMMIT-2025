@@ -47,7 +47,23 @@ const AboutIEDCBIT: React.FC = () => {
               strokeLinejoin="round"
             />
           </svg>
+             
+         <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
+              ABOUT RVS
+            </h2>
 
+            <p className="text-sm sm:text-base leading-relaxed text-[#f3e6ff] drop-shadow-[0_0_8px_#a64dff]">
+             Rajya Vokkaligara Sangha (RVS) Rajya Vokkaligara Sangha (RVS) is a respected charitable and 
+              educational organization established in 1906 with the vision of promoting education, 
+              culture, and social welfare among the Vokkaliga community and the society at large. 
+              Over the years, RVS has founded and managed numerous educational institutions, 
+              including Bangalore Institute of Technology and other reputed schools and colleges. 
+              Guided by values of service, integrity, and inclusiveness, RVS continues to play a vital role in 
+              advancing educational opportunities and community development across Karnataka.
+            </p>
+          </section>
+          
           {/* ABOUT BIT SECTION */}
           <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20 mb-10">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
@@ -89,21 +105,7 @@ const AboutIEDCBIT: React.FC = () => {
             </p>
           </section>
           
-            <section className="bg-[#1b0033]/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl ring-1 ring-[#b266ff]/20">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-[#e6ccff] drop-shadow-[0_0_10px_#b266ff] mb-4">
-              ABOUT RVS
-            </h2>
-
-            <p className="text-sm sm:text-base leading-relaxed text-[#f3e6ff] drop-shadow-[0_0_8px_#a64dff]">
-             Rajya Vokkaligara Sangha (RVS) Rajya Vokkaligara Sangha (RVS) is a respected charitable and 
-              educational organization established in 1906 with the vision of promoting education, 
-              culture, and social welfare among the Vokkaliga community and the society at large. 
-              Over the years, RVS has founded and managed numerous educational institutions, 
-              including Bangalore Institute of Technology and other reputed schools and colleges. 
-              Guided by values of service, integrity, and inclusiveness, RVS continues to play a vital role in 
-              advancing educational opportunities and community development across Karnataka.
-            </p>
-          </section>
+          
           
           {/* Decorative glow */}
           <div className="absolute inset-0 -z-10 flex items-center justify-center">
