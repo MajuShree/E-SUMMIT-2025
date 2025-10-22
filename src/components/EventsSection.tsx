@@ -30,12 +30,12 @@ const EventsSection = () => {
     },
     {
       title: "Workshop",
-      description: "Learn from industry experts",
+      description: "Learn from industry experts.This will be published in official groups after registering for hackathon and ideathon. ",
       icon: "🎓",
     },
     {
       title: "E Summit Fun",
-      description: "Network and celebrate innovation",
+      description: "Network and celebrate innovation.This will be published in official groups after registering for hackathon and ideathon.",
       icon: "🎉",
     },
   ];
