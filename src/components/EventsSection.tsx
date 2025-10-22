@@ -20,13 +20,13 @@ const EventsSection = () => {
       title: "Xcelerate",
       description: " A 24hr Hackathon to build and innovative solutions",
       icon: "💻",
-      registerLink: "https://your-hackathon-link.com", // <-- add your real link
+      registerLink: "https://unstop.com/hackathons/xcelerate-nikshatra-e-summit-2025-bangalore-institute-of-technology-bit-bangalore-1576568", // <-- add your real link
     },
     {
       title: "Ideatattva",
       description: " Ideathon to pitch your groundbreaking ideas",
       icon: "💡",
-      registerLink: "https://your-ideathon-link.com", // <-- add your real link
+      registerLink: "https://unstop.com/competitions/ideatattva-nikshatra-e-summit-2025-bangalore-institute-of-technology-bit-bangalore-1576558", // <-- add your real link
     },
     {
       title: "Workshop",
