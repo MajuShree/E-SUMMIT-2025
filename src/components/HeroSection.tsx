@@ -7,7 +7,7 @@ const heroParts: string[] = [
   "X",
   "BIT'S E Summit'25",
   "powered by Unstop",
-  "presented by iedc",
+  "presented by IEDC",
 ];
 
 // Generate nebula particles
