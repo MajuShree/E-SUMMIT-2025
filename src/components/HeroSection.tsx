@@ -5,7 +5,7 @@ import Sparkles from "./Sparkles.tsx";
 const heroParts: string[] = [
   "Nikshtara",
   "X",
-  "BIT'S E Summit 25",
+  "BIT'S E Summit'25",
   "powered by Unstop",
   "presented by iedc",
 ];
