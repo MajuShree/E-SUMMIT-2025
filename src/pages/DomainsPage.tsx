@@ -10,61 +10,57 @@ const DomainsPage = () => {
     {
       title: "Artificial Intelligence & Data-Driven Innovation",
       icon: "🤖",
-      description:
-        "AI is redefining the boundaries of what software can do. This domain invites participants to build intelligent systems that learn, predict, and create. You can develop AI-powered productivity tools, generative AI applications, or data analytics platforms that uncover insights and automate decisions. Whether it’s an assistant that writes code, summarizes meetings, or detects patterns in data — this is your space to harness intelligence for impact."
-"Example ideas:"
-"•	AI-powered note summarizer or chatbot"
-"•	Predictive analytics dashboard for business insights"
-"•	Generative AI tools for text, image, or code creation"
-"•	AI recommendation systems or data-driven automation"
-,
+      description: `AI is redefining the boundaries of what software can do. This domain invites participants to build intelligent systems that learn, predict, and create. You can develop AI-powered productivity tools, generative AI applications, or data analytics platforms that uncover insights and automate decisions. Whether it’s an assistant that writes code, summarizes meetings, or detects patterns in data — this is your space to harness intelligence for impact.
+
+Example ideas:
+• AI-powered note summarizer or chatbot
+• Predictive analytics dashboard for business insights
+• Generative AI tools for text, image, or code creation
+• AI recommendation systems or data-driven automation`,
     },
     {
       title: "Cybersecurity, Privacy & Digital Trust",
       icon: "🛡️",
-      description:
-        "In a connected world, security is no longer optional — it’s essential. This domain challenges participants to build software that protects data, ensures privacy, and promotes trust in digital interactions. You can explore identity management through blockchain (Web3), create safer authentication systems, or design awareness platforms that educate users about online threats."
-"Example ideas:"
-"•	Phishing or fraud detection tools"
-"•	Blockchain-based certificate or identity verification"
-"•	Privacy dashboards and secure file-sharing systems"
-"•	Awareness-based gamified cybersecurity education"
-,
+      description: `In a connected world, security is no longer optional — it’s essential. This domain challenges participants to build software that protects data, ensures privacy, and promotes trust in digital interactions. You can explore identity management through blockchain (Web3), create safer authentication systems, or design awareness platforms that educate users about online threats.
+
+Example ideas:
+• Phishing or fraud detection tools
+• Blockchain-based certificate or identity verification
+• Privacy dashboards and secure file-sharing systems
+• Awareness-based gamified cybersecurity education`,
     },
     {
       title: "Health, Wellness & Education Technology",
       icon: "💊",
-      description:
-        "This domain brings together HealthTech and EdTech — both focused on empowering individuals through knowledge and well-being. Participants can build platforms that track health metrics, enable teleconsultation, or support mental wellness. Alternatively, focus on education by personalizing learning, creating AI tutors, or building tools for teachers and students to interact effectively."
-"Example ideas:"
-"•	AI-based symptom tracker or virtual doctor app"
-"•	Personalized learning platforms and adaptive quizzes"
-"•	Mental wellness and stress tracking applications"
-"•	Fitness, nutrition, or mindfulness platforms"
-,
+      description: `This domain brings together HealthTech and EdTech — both focused on empowering individuals through knowledge and well-being. Participants can build platforms that track health metrics, enable teleconsultation, or support mental wellness. Alternatively, focus on education by personalizing learning, creating AI tutors, or building tools for teachers and students to interact effectively.
+
+Example ideas:
+• AI-based symptom tracker or virtual doctor app
+• Personalized learning platforms and adaptive quizzes
+• Mental wellness and stress tracking applications
+• Fitness, nutrition, or mindfulness platforms`,
     },
     {
       title: "Sustainability, Smart Systems & IoT",
       icon: "🌱",
-      description:
-        "Innovation should serve the planet as much as people. This domain encourages projects that make our surroundings smarter and more sustainable through automation, IoT, and eco-friendly technology. Participants can create dashboards for smart homes, city automation systems, or apps that track environmental impact. The goal is to design systems that conserve energy, improve efficiency, and contribute to a sustainable future."
-"Example ideas:"
-"•	Smart irrigation or waste management systems"
-"•	IoT dashboards for energy or device control"
-"•	Carbon footprint tracking or eco habit apps"
-"•	Real-time data visualization for resource management"
-,
+      description: `Innovation should serve the planet as much as people. This domain encourages projects that make our surroundings smarter and more sustainable through automation, IoT, and eco-friendly technology. Participants can create dashboards for smart homes, city automation systems, or apps that track environmental impact. The goal is to design systems that conserve energy, improve efficiency, and contribute to a sustainable future.
+
+Example ideas:
+• Smart irrigation or waste management systems
+• IoT dashboards for energy or device control
+• Carbon footprint tracking or eco habit apps
+• Real-time data visualization for resource management`,
     },
     {
       title: "FinTech, SaaS & Developer Tools",
       icon: "💼",
-      description:
-        "Software powers business growth, and this domain focuses on building scalable tools that help startups, enterprises, and developers thrive. From financial management apps to developer utilities or team collaboration tools — think about software that simplifies operations, enhances productivity, or empowers entrepreneurs."
-"Example ideas:"
-"•	UPI-based budgeting or expense tracking app"
-"•	Lightweight CRM or team task manager"
-"•	Developer productivity or API testing tools"
-"•	Analytics dashboard for small business operations",
+      description: `Software powers business growth, and this domain focuses on building scalable tools that help startups, enterprises, and developers thrive. From financial management apps to developer utilities or team collaboration tools — think about software that simplifies operations, enhances productivity, or empowers entrepreneurs.
+
+Example ideas:
+• UPI-based budgeting or expense tracking app
+• Lightweight CRM or team task manager
+• Developer productivity or API testing tools
+• Analytics dashboard for small business operations`,
     },
   ];
 
@@ -84,9 +80,7 @@ const DomainsPage = () => {
       {/* Floating leaves */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
-        animate={{
-          y: [0, 40, 0],
-        }}
+        animate={{ y: [0, 40, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       >
         {[...Array(30)].map((_, i) => (
@@ -139,7 +133,9 @@ const DomainsPage = () => {
               <h3 className="text-2xl font-bold mb-2 text-nature-light">
                 {d.title}
               </h3>
-              <p className="text-gray-200 text-sm">{d.description}</p>
+              <p className="text-gray-200 text-sm whitespace-pre-line">
+                {d.description}
+              </p>
             </motion.div>
           ))}
         </div>
