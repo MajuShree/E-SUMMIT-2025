@@ -4,10 +4,9 @@ import { Building2, Sparkles, Zap, Target } from "lucide-react";
 import { useRef, useMemo } from "react";
 
 const sponsors = [
-
   { name: "Unstop", tier: "Powered By", logo: "⚡", Icon: Zap, color: "from-cosmic-cyan to-cosmic-blue" },
   { name: "IEDC", tier: "Presented By", logo: "🎯", Icon: Target, color: "from-cosmic-purple to-cosmic-pink" },
-
+  { name: "TieOpp", tier: "Supported By", logo: "/tieopplogo.png", Icon: Building2, color: "from-cosmic-blue to-cosmic-cyan" },
 ];
 
 const generateFloatingStars = (count: number) => {
@@ -103,7 +102,15 @@ const SponsorsSection = () => {
                   
                   <div className="relative z-10">
                     <motion.div className="flex items-center justify-center mb-6" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
-                      <div className="text-7xl animate-float">{sponsor.logo}</div>
+                      {typeof sponsor.logo === "string" && sponsor.logo.endsWith(".png") ? (
+                        <img 
+                          src={sponsor.logo} 
+                          alt={sponsor.name} 
+                          className="w-32 h-auto mx-auto animate-float" 
+                        />
+                      ) : (
+                        <div className="text-7xl animate-float">{sponsor.logo}</div>
+                      )}
                       <Icon className="absolute w-8 h-8 text-cosmic-cyan opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.div>
                     
