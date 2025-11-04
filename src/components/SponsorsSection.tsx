@@ -93,20 +93,20 @@ const SponsorsSection = () => {
                 whileHover={{ y: -20, rotateY: 10, rotateX: 5, scale: 1.08, z: 50 }}
                 className="relative group preserve-3d cursor-pointer"
               >
-                <div className="relative bg-card/70 backdrop-blur-xl rounded-3xl p-10 border-2 border-cosmic-purple/40 overflow-hidden shadow-cosmic">
+                <div className="relative bg-card/70 backdrop-blur-xl rounded-3xl p-10 border-2 border-cosmic-purple/40 overflow-hidden shadow-cosmic h-[340px] flex flex-col justify-center">
                   <motion.div 
                     className={`absolute inset-0 bg-gradient-to-br ${sponsor.color} opacity-0 group-hover:opacity-20`}
                     animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                   />
                   
-                  <div className="relative z-10">
-                    <motion.div className="flex items-center justify-center mb-6" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
+                  <div className="relative z-10 flex flex-col items-center justify-center text-center space-y-4">
+                    <motion.div className="flex items-center justify-center mb-4" whileHover={{ rotate: 360 }} transition={{ duration: 0.8 }}>
                       {typeof sponsor.logo === "string" && sponsor.logo.endsWith(".png") ? (
                         <img 
                           src={sponsor.logo} 
                           alt={sponsor.name} 
-                          className="w-32 h-auto mx-auto animate-float" 
+                          className="w-24 h-auto mx-auto animate-float object-contain" 
                         />
                       ) : (
                         <div className="text-7xl animate-float">{sponsor.logo}</div>
@@ -114,12 +114,12 @@ const SponsorsSection = () => {
                       <Icon className="absolute w-8 h-8 text-cosmic-cyan opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.div>
                     
-                    <h3 className="text-3xl font-orbitron font-bold mb-3 text-gradient-cosmic glow-cosmic text-center">
+                    <h3 className="text-3xl font-orbitron font-bold text-gradient-cosmic glow-cosmic">
                       {sponsor.name}
                     </h3>
                     
                     <motion.p 
-                      className="text-cosmic-cyan font-grotesk font-semibold text-center text-lg"
+                      className="text-cosmic-cyan font-grotesk font-semibold text-lg"
                       animate={{ textShadow: ["0 0 10px rgba(59, 130, 246, 0.5)", "0 0 20px rgba(59, 130, 246, 1)", "0 0 10px rgba(59, 130, 246, 0.5)"] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     >
